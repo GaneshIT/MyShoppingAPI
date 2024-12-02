@@ -20,3 +20,57 @@ step 6: exectue entityframeworkcore.tools commands:
 			->it will generate model into table schema
 		command 2: update-database
 			->it will be created tables into sql server database
+
+
+
+Rest API:  Java API(Spring boot), Python service, .net web api, Node JS
+
+A REST API is an application programming interface (API) 
+
+that follows the design principles of the REST architectural style. 
+
+REST is short for representational state transfer, 
+
+and is a set of rules and guidelines about how you should build a web API.
+
+
+
+HTTP web verbs:
+1. HTTPGET
+2. HTTPPOST
+3. HTTPPUT
+4. HTTPDELETE
+5. HTTPPATCH'
+'
+
+
+[
+  {
+    "id": 1,
+    "name": "ABC",
+    "description": "Test",
+    "price": 1000
+  },
+  {
+    "id": 2,
+    "name": "Mouse",
+    "description": "Mouse 123",
+    "price": 1000
+  }
+]
+
+
+[
+  {
+    "id": 1,
+    "name": "ABC",
+    "description": "Test",
+    "price": 1000
+  },
+  {
+    "id": 2,
+    "name": "keyboard",
+    "description": "keyboard",
+    "price": 15000
+  }
+]

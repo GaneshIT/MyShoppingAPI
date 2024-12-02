@@ -11,5 +11,8 @@ namespace MyShoppingService.Services
     {
         void AddProduct(Product product);
         List<Product> GetProducts();
+        Product GetProductById(int id);
+        void DeleteProduct(int id);
+        void UpdateProduct(Product product);
     }
 }

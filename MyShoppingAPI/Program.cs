@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using MyShoppingEntity;
 using MyShoppingRepository.Data;
 using MyShoppingRepository.Repositories;
 using MyShoppingService.Services;
@@ -10,7 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 var sqlconnectionstring = builder.Configuration.GetConnectionString("sqlcon");
 //MyShoppingDbContext obj=new MyShoppingDbContext();
 builder.Services.AddDbContext<MyShoppingDbContext>
-    (options => options.UseSqlServer(sqlconnectionstring));
+    (abc => abc.UseSqlServer(sqlconnectionstring));
+
 //IProductRepository obj=new ProductRepository
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();

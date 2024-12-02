@@ -1,4 +1,5 @@
-﻿using MyShoppingEntity;
+﻿using Microsoft.Extensions.Options;
+using MyShoppingEntity;
 using MyShoppingRepository.Data;
 using System;
 using System.Collections.Generic;
@@ -25,15 +26,20 @@ namespace MyShoppingRepository.Repositories
         }
         public void UpdateProduct(Product product)
         {
-
+            _context.Products.Update(product);
+            _context.SaveChanges();
         }
         public void DeleteProduct(int id)
         {
-
+           Product product= _context.Products.Find(id);
+            //delete from products where id=1
+            _context.Products.Remove(product);
+            _context.SaveChanges();
         }
         public Product GetProductById(int id)
         {
-            Product obj = new Product();
+            //select * from prodcuts where id=1
+            Product obj = _context.Products.Find(id);
             return obj;
         }
         public List<Product> GetAll()

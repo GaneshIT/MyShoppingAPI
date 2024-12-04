@@ -9,11 +9,11 @@ namespace MyShoppingRepository.Repositories
 {
     public interface IProductRepository
     {
-        void AddProduct(Product product);
+        Task AddProduct(Product product);
         void UpdateProduct(Product product);
         void DeleteProduct(int id);
-        Product GetProductById(int id);
-        List<Product> GetAll();
+        Task<Product> GetProductById(int id);
+        Task<List<Product>> GetAll();
 
 
     }

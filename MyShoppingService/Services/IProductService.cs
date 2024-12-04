@@ -9,9 +9,9 @@ namespace MyShoppingService.Services
 {
     public interface IProductService
     {
-        void AddProduct(Product product);
-        List<Product> GetProducts();
-        Product GetProductById(int id);
+        Task AddProduct(Product product);
+        Task<List<Product>> GetProducts();
+        Task<Product> GetProductById(int id);
         void DeleteProduct(int id);
         void UpdateProduct(Product product);
     }

@@ -29,9 +29,9 @@ namespace MyShoppingService.Services
         {
             _repository = productRepository;
         }
-        public void AddProduct(Product product)
+        public async Task AddProduct(Product product)
         {
-            _repository.AddProduct(product);
+           await _repository.AddProduct(product);
         }
 
         public void DeleteProduct(int id)
@@ -39,14 +39,30 @@ namespace MyShoppingService.Services
             _repository.DeleteProduct(id);
         }
 
-        public Product GetProductById(int id)
+        public async Task<Product> GetProductById(int id)
         {
-          return  _repository.GetProductById(id);
+            try
+            {
+                return await _repository.GetProductById(id);
+            }
+            catch(Exception ex)
+            {
+                // File logger
+                //DB logger
+                //Environment logger
+                File.Create("MyLog.txt");
+                StreamWriter sw = new StreamWriter("MyLog.txt");
+                sw.WriteLine("*******************");
+                sw.WriteLine("Date:" + DateTime.Now);
+                sw.WriteLine("Message:" + ex.Message);
+                sw.WriteLine("stack trac:" + ex.StackTrace);
+                sw.WriteLine("*******************");
+            }
         }
 
-        public List<Product> GetProducts()
+        public async Task<List<Product>> GetProducts()
         {
-           return _repository.GetAll();
+           return await _repository.GetAll();
         }
 
         public void UpdateProduct(Product product)

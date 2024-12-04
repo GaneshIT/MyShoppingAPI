@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
+using MongoDB.Driver.Linq;
 using MyShoppingEntity;
 using MyShoppingRepository.Data;
 using System;
@@ -18,10 +19,10 @@ namespace MyShoppingRepository.Repositories
             //getting instance from container and assign to local variable
             _context = dbcontext;
         }
-        public void AddProduct(Product product)
+        public async Task AddProduct(Product product)
         {
             //insert into products values(product.id,product,name,product.desc,product.price)
-            _context.Products.Add(product);
+           await _context.Products.AddAsync(product);
             _context.SaveChanges();//execute the query
         }
         public void UpdateProduct(Product product)
@@ -36,16 +37,16 @@ namespace MyShoppingRepository.Repositories
             _context.Products.Remove(product);
             _context.SaveChanges();
         }
-        public Product GetProductById(int id)
+        public async Task<Product> GetProductById(int id)
         {
             //select * from prodcuts where id=1
-            Product obj = _context.Products.Find(id);
+            Product obj =await _context.Products.FindAsync(id);
             return obj;
         }
-        public List<Product> GetAll()
+        public async Task<List<Product>> GetAll()
         {
             //select * from products
-            List<Product> list = _context.Products.ToList();
+            List<Product> list =await _context.Products.ToListAsync();
             return list;
         }
     }

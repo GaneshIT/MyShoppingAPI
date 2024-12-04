@@ -17,17 +17,17 @@ namespace MyShoppingAPI.Controllers
             _productService = productService;
         }
         [HttpGet("GetProducts")]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var result = _productService.GetProducts();
+            var result =await _productService.GetProducts();
             if(result.Count > 0) 
             return Ok(result); //200
             return NotFound(); //404
         }
         [HttpGet("GetProductById")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var result = _productService.GetProductById(id);
+            var result =await _productService.GetProductById(id);
             return Ok(result);
         }
         [HttpPost("Create")]
@@ -69,3 +69,30 @@ namespace MyShoppingAPI.Controllers
         public string message { get; set; }
     }
 }
+
+
+
+
+/*
+ * class A
+ * {
+ * async void M1(){
+ *         await service.Getusers(); -> db and fetch   12 sec
+ * }
+ * async void M2(){
+ *        await  service.GetEmployees(); -> db and fetch   15 sec
+ * }
+ * async void M3(){
+ *        await  service.GetProducts(); -> db and fetch    10sec
+ * }
+ * M1()
+ * M2()
+ * M3()
+ * 
+ * }
+ * 
+ * 
+ * 
+ * 
+ * 
+ */

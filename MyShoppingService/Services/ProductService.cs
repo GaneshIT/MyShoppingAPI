@@ -58,6 +58,7 @@ namespace MyShoppingService.Services
                 sw.WriteLine("stack trac:" + ex.StackTrace);
                 sw.WriteLine("*******************");
             }
+            return null;
         }
 
         public async Task<List<Product>> GetProducts()

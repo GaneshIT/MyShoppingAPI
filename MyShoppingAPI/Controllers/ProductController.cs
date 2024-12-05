@@ -12,16 +12,29 @@ namespace MyShoppingAPI.Controllers
     public class ProductController : ControllerBase
     {
         IProductService _productService;
-        public ProductController(IProductService productService)
+        private readonly ILogger<ProductController> _logger;
+
+        public ProductController(IProductService productService, ILogger<ProductController> logger)
         {
             _productService = productService;
+            _logger = logger;
         }
         [HttpGet("GetProducts")]
         public async Task<IActionResult> GetAll()
         {
-            var result =await _productService.GetProducts();
-            if(result.Count > 0) 
-            return Ok(result); //200
+            try
+            {
+                var result = await _productService.GetProducts();
+                _logger.LogInformation("Get products exectued");
+                if (result.Count > 0)
+                    return Ok(result); //200
+
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError("Get products not exectued:"+ex.Message);
+
+            }
             return NotFound(); //404
         }
         [HttpGet("GetProductById")]
@@ -90,8 +103,14 @@ namespace MyShoppingAPI.Controllers
  * M3()
  * 
  * }
- * 
- * 
+ *   Warining
+ *   Error
+ *   Info
+ *   Debug
+ *   
+ * Log4Net
+ * Serilog
+ * NLog
  * 
  * 
  * 

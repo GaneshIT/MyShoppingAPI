@@ -18,6 +18,11 @@ namespace MyShoppingEntity
         public string ProductType { get; set; }
         public string Description { get; set; }
         public int Price { get; set; }
+
+        public static implicit operator Task<object>(Product v)
+        {
+            throw new NotImplementedException();
+        }
     }
     public class Sales
     {
